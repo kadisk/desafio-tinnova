@@ -3,39 +3,53 @@
 
 #define FILENAME "arq.txt"
 
-int main() {
-    // a) Crie/abra um arquivo texto de nome "arq.txt"
-    FILE *file = fopen(FILENAME, "w");
+FILE* AbrirArquivoDeGravacao(){
+    return fopen(FILENAME, "w");
+}
+
+FILE* AbrirArquivoDeLeitura(){
+    return fopen(FILENAME, "r");
+}
+
+void EscreveArquivo(){
+    FILE *file = AbrirArquivoDeGravacao();
+    char input;
+
     if (file == NULL) {
         printf("Erro ao abrir o arquivo!\n");
         return 1;
     }
-
-    // b) Permita que o usuário entre com diversos caracteres nesse arquivo, até que o usuário entre com o caractere '0'
-    char input;
-    printf("Digite caracteres e pressione ENTER. Digite '0' para finalizar a entrada:\n");
+    printf("\033[1mDigite caracteres e pressione ENTER. Digite '0' para finalizar a entrada:\033[0m\n");
     do {
         scanf(" %c", &input);
         if (input != '0') {
             fprintf(file, "%c", input);
         }
     } while (input != '0');
-
-    // c) Feche o arquivo e abra novamente o arq.txt
     fclose(file);
-    file = fopen(FILENAME, "r");
+}
+
+void LeArquivo(){
+    FILE *file = AbrirArquivoDeLeitura();
+    char input;
+
     if (file == NULL) {
         printf("Erro ao abrir o arquivo!\n");
         return 1;
     }
 
-    // d) Lendo-o caractere por caractere, e escrevendo na tela (printf) todos os caracteres armazenados
-    printf("Conteúdo do arquivo:\n");
+    printf("\n\033[1mConteúdo do arquivo:\033[0m\n");
     while ((input = fgetc(file)) != EOF) {
         printf("%c", input);
     }
 
-    // Feche o arquivo
     fclose(file);
+}
+
+int main() {
+    
+    EscreveArquivo();
+    LeArquivo();
+
     return 0;
 }
