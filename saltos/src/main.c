@@ -5,6 +5,16 @@
 #define NUM_SALTOS 5
 #define NUM_SALTOS_VALIDOS 3
 
+struct Atleta {
+    char nome[50];
+    float saltos[NUM_SALTOS];
+    float comprimento;
+    float media;
+    float melhor_salto;
+    float pior_salto;
+    float soma_saltos;
+};
+
 char* TrazerOrdinalPorExtenso(int indice){
     switch (indice) {
         case 0:
@@ -34,46 +44,46 @@ void LerSaltos(float *saltos){
     }
 }
 
-void CalcularResultado(float *saltos, float *melhor_salto, float *pior_salto, float *soma_saltos, float *media){
-    *melhor_salto = saltos[0];
-    *pior_salto = saltos[0];
-    *soma_saltos = saltos[0];
+void CalcularResultado(struct Atleta *atleta){
+    atleta->melhor_salto = atleta->saltos[0];
+    atleta->pior_salto = atleta->saltos[0];
+    atleta->soma_saltos = atleta->saltos[0];
 
     for (int i = 1; i < NUM_SALTOS; i++) {
-        if (saltos[i] > *melhor_salto) {
-            *melhor_salto = saltos[i];
+        if (atleta->saltos[i] > atleta->melhor_salto) {
+            atleta->melhor_salto = atleta->saltos[i];
         }
-        if (saltos[i] < *pior_salto) {
-            *pior_salto = saltos[i];
+        if (atleta->saltos[i] < atleta->pior_salto) {
+            atleta->pior_salto = atleta->saltos[i];
         }
-        *soma_saltos += saltos[i];
+        atleta->soma_saltos += atleta->saltos[i];
     }
 
-    *media = (*soma_saltos - *melhor_salto - *pior_salto) / NUM_SALTOS_VALIDOS;
+    atleta->media = (atleta->soma_saltos - atleta->melhor_salto - atleta->pior_salto) / NUM_SALTOS_VALIDOS;
 }
 
-void MostrarResultado(char *nome, float melhor_salto, float pior_salto, float media){
-    printf("\nMelhor salto: %.2f m\n", melhor_salto);
-    printf("Pior salto: %.2f m\n", pior_salto);
-    printf("Media dos demais saltos: %.2f m\n", media);
-    printf("Resultado final:\n%s: %.2f m\n", nome, media);
+void MostrarResultado(struct Atleta atleta){
+    printf("\nMelhor salto: %.2f m\n", atleta.melhor_salto);
+    printf("Pior salto: %.2f m\n", atleta.pior_salto);
+    printf("Media dos demais saltos: %.2f m\n", atleta.media);
+    printf("Resultado final:\n%s: %.2f m\n", atleta.nome, atleta.media);
 }
+
 
 int main() {
-    float saltos[NUM_SALTOS];
-    float media = 0.0;
-    float melhor_salto = 0.0;
-    float pior_salto = 0.0;
-    float soma_saltos = 0.0;
-    char nome[50];
+
+    struct Atleta atleta;
+    atleta.melhor_salto = 0.0;
+    atleta.pior_salto = 0.0;
+    atleta.soma_saltos = 0.0;
 
     while (1) {
-        if(LerNomeAtleta(nome) == 0){
+        if(LerNomeAtleta(atleta.nome) == 0){
             break;
         }
-        LerSaltos(saltos);
-        CalcularResultado(saltos, &melhor_salto, &pior_salto, &soma_saltos, &media);
-        MostrarResultado(nome, melhor_salto, pior_salto, media);
+        LerSaltos(atleta.saltos);
+        CalcularResultado(&atleta);
+        MostrarResultado(atleta);
     }
 
     return 0;
