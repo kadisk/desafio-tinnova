@@ -48,18 +48,17 @@ char LerSequencia(char *linha){
     return linha;
 }
 
-void ConverterLinhaEmVetor(char *linha, int *tamanho, int *vetor){
+void ConverterLinhaEmVetor(char *linha, int *tamanho, int **vetor){
     int temp;
     char *ptr = linha;
     while (sscanf(ptr, "%d", &temp) == 1) {
-        *tamanho++;
-        vetor = realloc(vetor, *tamanho * sizeof(int));
-        vetor[*tamanho - 1] = temp;
+        *tamanho = *tamanho + 1;
+        *vetor = realloc(*vetor, *tamanho * sizeof(int));
+        (*vetor)[*tamanho - 1] = temp;
         ptr = strchr(ptr, ' ');
         if (!ptr) break;
         ptr++;
     }
-
 }
 
 int main() {
@@ -68,7 +67,7 @@ int main() {
     char linha[1024], *ptr;
 
     LerSequencia(linha);
-    ConverterLinhaEmVetor(linha, &tamanho, vetor);
+    ConverterLinhaEmVetor(linha, &tamanho, &vetor);
 
     bubble_sort(vetor, tamanho);
 
