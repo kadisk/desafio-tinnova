@@ -42,23 +42,33 @@ void bubble_sort(int vetor[], int tamanho) {
     }
 }
 
+char LerSequencia(char *linha){
+    printf("Digite uma sequencia de inteiros para ser ordenada (pressione Enter para terminar): ");
+    fgets(linha, sizeof(linha), stdin);
+    return linha;
+}
+
+void ConverterLinhaEmVetor(char *linha, int *tamanho, int *vetor){
+    int temp;
+    char *ptr = linha;
+    while (sscanf(ptr, "%d", &temp) == 1) {
+        *tamanho++;
+        vetor = realloc(vetor, *tamanho * sizeof(int));
+        vetor[*tamanho - 1] = temp;
+        ptr = strchr(ptr, ' ');
+        if (!ptr) break;
+        ptr++;
+    }
+
+}
+
 int main() {
     int *vetor = NULL;
     int tamanho = 0, temp;
     char linha[1024], *ptr;
 
-    printf("Digite uma sequencia de inteiros para ser ordenada (pressione Enter para terminar): ");
-    fgets(linha, sizeof(linha), stdin);
-
-    ptr = linha;
-    while (sscanf(ptr, "%d", &temp) == 1) {
-        tamanho++;
-        vetor = realloc(vetor, tamanho * sizeof(int));
-        vetor[tamanho - 1] = temp;
-        ptr = strchr(ptr, ' '); // Procura pelo próximo espaço na linha
-        if (!ptr) break;
-        ptr++; // Avança para o próximo número
-    }
+    LerSequencia(linha);
+    ConverterLinhaEmVetor(linha, &tamanho, vetor);
 
     bubble_sort(vetor, tamanho);
 
