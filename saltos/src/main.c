@@ -36,14 +36,25 @@ int LerNomeAtleta(char *nome){
     return nome;
 }
 
-void LerSaltos(float *saltos){
-    for (int i = 0; i < NUM_SALTOS; i++) {
+float LerSalto(int i){
+    float salto;
+    char entrada[50];
+    while (1) {
         printf("\t %s Salto: ", TrazerOrdinalPorExtenso(i));
-        scanf("%f", &saltos[i]);
-        getchar();
+        fgets(entrada, 50, stdin);
+        if (sscanf(entrada, "%f", &salto) == 1) {
+            return salto;
+        } else {
+            printf("\t Entrada inválida. Tente novamente.\n");
+        }
     }
 }
 
+void LerSaltos(float *saltos){
+    for (int i = 0; i < NUM_SALTOS; i++) {
+        saltos[i] = LerSalto(i);
+    }
+}
 
 void CalcularResultado(struct Atleta *atleta){
     atleta->melhor_salto = atleta->saltos[0];
