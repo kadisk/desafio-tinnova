@@ -6,6 +6,11 @@ O software começa com uma apresentação e, em seguida, apresenta uma tabela de
 
 O resultado é exibido ao usuário com a quantidade de lâmpadas necessárias para o cômodo especificado. O usuário pode continuar a especificar outros cômodos ou sair do programa.
 
+## Requisitos
+- GCC (GNU Compiler Collection)
+- Make
+
+
 ## Compilação e Execução
 
 Para compilar o programa, é necessário ter o GCC instalado no sistema. Basta abrir um terminal na pasta do projeto e executar o comando `make`. Será gerado um arquivo executável chamado `planejador-de-iluminacao`.

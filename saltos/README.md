@@ -1,6 +1,11 @@
 # Programa de Cálculo de Média de Saltos em Distância
 Este é um programa que calcula a média dos saltos em distância realizados por um atleta em uma competição de salto em distância, após eliminar o melhor e o pior resultado dentre os cinco saltos realizados. O programa faz uso de uma lista para armazenar os saltos.
 
+## Requisitos
+- GCC (GNU Compiler Collection)
+- Make
+
+
 ## Compilação
 Para compilar o programa, basta utilizar o seguinte comando no terminal:
 
