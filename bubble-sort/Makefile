@@ -6,8 +6,8 @@ BINDIR = $(PREFIX)/bin
 
 all: ordenacao-bubble-sort
 
-ordenacao-bubble-sort: src/main.c
-	$(CC) $(CFLAGS) src/main.c $(LDLIBS) -o ordenacao-bubble-sort
+ordenacao-bubble-sort: src/main.c src/funcoes.h src/impl.c
+	$(CC) $(CFLAGS) src/main.c src/impl.c $(LDLIBS) -o ordenacao-bubble-sort
 
 install: ordenacao-bubble-sort
 	install -D -m 755 ordenacao-bubble-sort $(BINDIR)/ordenacao-bubble-sort
