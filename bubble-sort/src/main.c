@@ -42,10 +42,9 @@ void bubble_sort(int vetor[], int tamanho) {
     }
 }
 
-char LerSequencia(char *linha){
+void LerSequencia(char *linha, int max_tamanho){
     printf("Digite uma sequencia de inteiros para ser ordenada (pressione Enter para terminar): ");
-    fgets(linha, sizeof(linha), stdin);
-    return linha;
+    fgets(linha, max_tamanho, stdin);
 }
 
 void ConverterLinhaEmVetor(char *linha, int *tamanho, int **vetor){
@@ -66,7 +65,7 @@ int main() {
     int tamanho = 0, temp;
     char linha[1024], *ptr;
 
-    LerSequencia(linha);
+    LerSequencia(linha, sizeof(linha));
     ConverterLinhaEmVetor(linha, &tamanho, &vetor);
 
     bubble_sort(vetor, tamanho);
