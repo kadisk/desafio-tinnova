@@ -33,7 +33,10 @@ char* TrazerOrdinalPorExtenso(int indice){
 int LerNomeAtleta(char *nome){
     printf("\nDigite o nome do atleta: ");
     fgets(nome, 50, stdin);
-    return nome;
+    if (nome[0] == '\n') {
+        return 0;
+    }
+    return 1;
 }
 
 float LerSalto(int i){
