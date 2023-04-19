@@ -21,23 +21,20 @@ void bubble_sort(int vetor[], int tamanho) {
 }
 
 int main() {
-    int *vetor;
-    int tamanho, i;
+    int *vetor = NULL;
+    int tamanho = 0, temp;
 
-    printf("Digite o tamanho da sequencia: ");
-    scanf("%d", &tamanho);
-
-    vetor = (int *)malloc(tamanho * sizeof(int));
-
-    printf("Digite uma sequencia de inteiros para ser ordenada: ");
-    for (i = 0; i < tamanho; i++) {
-        scanf("%d", &vetor[i]);
+    printf("Digite uma sequencia de inteiros para ser ordenada (terminada com uma letra): ");
+    while (scanf("%d", &temp) == 1) {
+        tamanho++;
+        vetor = realloc(vetor, tamanho * sizeof(int));
+        vetor[tamanho - 1] = temp;
     }
 
     bubble_sort(vetor, tamanho);
 
     printf("\nLista Ordenada:\n");
-    for (i = 0; i < tamanho; i++) {
+    for (int i = 0; i < tamanho; i++) {
         printf("%d ", vetor[i]);
     }
     printf("\n");
