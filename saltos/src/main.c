@@ -31,18 +31,19 @@ char* TrazerOrdinalPorExtenso(int indice){
 }
 
 int LerNomeAtleta(char *nome){
-    printf("Digite o nome do atleta: ");
+    printf("\nDigite o nome do atleta: ");
     fgets(nome, 50, stdin);
-    return strcmp(nome, "\n");
+    return nome;
 }
 
-void LerSaltos(float *saltos){
+void LerSaltos(float *arrSaltos){
     for (int i = 0; i < NUM_SALTOS; i++) {
         printf("\t %s Salto: ", TrazerOrdinalPorExtenso(i));
-        scanf("%f", &saltos[i]);
+        scanf("%f", &arrSaltos[i]);
         getchar();
     }
 }
+
 
 void CalcularResultado(struct Atleta *atleta){
     atleta->melhor_salto = atleta->saltos[0];
@@ -66,7 +67,9 @@ void MostrarResultado(struct Atleta atleta){
     printf("\nMelhor salto: %.2f m\n", atleta.melhor_salto);
     printf("Pior salto: %.2f m\n", atleta.pior_salto);
     printf("Media dos demais saltos: %.2f m\n", atleta.media);
-    printf("Resultado final:\n%s: %.2f m\n", atleta.nome, atleta.media);
+    printf("Resultado final:\n");
+    printf("\tNome:%s", atleta.nome);
+    printf("\tSalto: %.2f m\n", atleta.media);
 }
 
 
