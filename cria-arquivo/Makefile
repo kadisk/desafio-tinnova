@@ -6,8 +6,8 @@ BINDIR = $(PREFIX)/bin
 
 all: cria-arquivo
 
-cria-arquivo: src/main.c
-	$(CC) $(CFLAGS) src/main.c $(LDLIBS) -o cria-arquivo
+cria-arquivo: src/main.c src/funcoes.h src/impl.c
+	$(CC) $(CFLAGS) src/main.c src/impl.c $(LDLIBS) -o cria-arquivo
 
 install: cria-arquivo
 	install -D -m 755 cria-arquivo $(BINDIR)/cria-arquivo
