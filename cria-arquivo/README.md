@@ -6,12 +6,12 @@ Este programa em C permite ao usuário criar ou abrir um arquivo de texto chamad
 - Make
 
 ## Como compilar e executar no Linux
-Abra o terminal e navegue até o diretório onde os arquivos estão armazenados (main.c e Makefile).
+Abra o terminal e navegue até o diretório onde os arquivos estão armazenados.
 Digite o seguinte comando para compilar o programa:
 ``` bash
 make
 ```
-Isso compilará o programa e gerará o arquivo executável "programa".
+Isso compilará o programa e gerará o arquivo executável "cria-arquivo".
 
 Agora, para executar o programa, digite o seguinte comando no terminal:
 ``` bash
